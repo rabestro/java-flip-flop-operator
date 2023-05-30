@@ -18,12 +18,12 @@ public class FlipFlopApp {
          Pattern.compile(".*[*]/.*")
                .asPredicate();
 
-   @SuppressWarnings({"java:S106", "java:S2096"})
+   @SuppressWarnings({ "java:S106", "java:S2096" })
    public static void main(String[] args) throws IOException {
       var filePath = Path.of(args[0]);
       var sourceCodeLines = Files.readAllLines(filePath).stream();
 
-      var javaDocPredicate = new FlipFlopPredicate<>(JAVADOC_ON, JAVADOC_OFF);
+      var javaDocPredicate = FlipFlopPredicate.of(JAVADOC_ON, JAVADOC_OFF);
 
       sourceCodeLines
             .filter(javaDocPredicate)

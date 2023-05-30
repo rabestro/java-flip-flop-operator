@@ -3,22 +3,11 @@ package com.epam.engx.flipflop;
 import java.util.function.Predicate;
 
 
-public final class FlipFlopPredicate<T> implements Predicate<T> {
-   private final Predicate<? super T> onPredicate;
-   private final Predicate<? super T> offPredicate;
-   private boolean onState;
+public interface FlipFlopPredicate<T> extends Predicate<T> {
 
-   public FlipFlopPredicate(Predicate<? super T> onPredicate, Predicate<? super T> offPredicate) {
-      this.onPredicate = onPredicate;
-      this.offPredicate = offPredicate;
-   }
+   boolean isActive();
 
-   @Override
-   public boolean test(T value) {
-      if (onState || onPredicate.test(value)) {
-         onState = !offPredicate.test(value);
-         return true;
-      }
-      return false;
+   static <T> FlipFlopPredicate<T> of(Predicate<? super T> flip, Predicate<? super T> flop) {
+      return new TwoDotFlipFlop<>(flip, flop);
    }
 }
