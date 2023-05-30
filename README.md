@@ -1,4 +1,4 @@
-# java-flip-flop-operator
+# Flip-Flop operator
 
 Implementation of the logical operator Flip-Flop in Java.
 
