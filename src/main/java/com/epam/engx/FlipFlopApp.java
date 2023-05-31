@@ -23,7 +23,7 @@ public class FlipFlopApp {
       var filePath = Path.of(args[0]);
       var sourceCodeLines = Files.readAllLines(filePath).stream();
 
-      var javaDocPredicate = FlipFlopPredicate.of(JAVADOC_ON, JAVADOC_OFF);
+      var javaDocPredicate = FlipFlopPredicate.twoDots(JAVADOC_ON, JAVADOC_OFF);
 
       sourceCodeLines
             .filter(javaDocPredicate)
