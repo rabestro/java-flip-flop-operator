@@ -2,11 +2,11 @@ package com.epam.engx.flipflop;
 
 import java.util.function.Predicate;
 
-
+@SuppressWarnings("java:S2039")
 abstract class AbstractFlipFlop<T> implements FlipFlopPredicate<T> {
-   protected final Predicate<? super T> flip;
-   protected final Predicate<? super T> flop;
-   protected boolean isActive;
+   final Predicate<? super T> flip;
+   final Predicate<? super T> flop;
+   boolean isActive;
 
    AbstractFlipFlop(Predicate<? super T> flip, Predicate<? super T> flop) {
       this.flip = flip;
@@ -14,7 +14,7 @@ abstract class AbstractFlipFlop<T> implements FlipFlopPredicate<T> {
    }
 
    @Override
-   public boolean isActive() {
+   public boolean state() {
       return isActive;
    }
 }

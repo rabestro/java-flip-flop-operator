@@ -3,9 +3,9 @@ package com.epam.engx.flipflop;
 import java.util.function.Predicate;
 
 
-public class ThreeDotFlipFlop<T> extends AbstractFlipFlop<T> {
+final class ThreeDotFlipFlop<T> extends AbstractFlipFlop<T> {
 
-   public ThreeDotFlipFlop(Predicate<? super T> flip, Predicate<? super T> flop) {
+   ThreeDotFlipFlop(Predicate<? super T> flip, Predicate<? super T> flop) {
       super(flip, flop);
    }
 
