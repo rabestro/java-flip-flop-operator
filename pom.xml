@@ -5,12 +5,16 @@
     <groupId>com.epam.engx</groupId>
     <artifactId>java-flip-flop-operator</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
 
     <name>Flip-Flop operator</name>
     <url>https://www.github.com/rabestro/java-flip-flop-operator</url>
+    <modules>
+        <module>flipflop</module>
+        <module>sample</module>
+    </modules>
     <description>
-        Implementation of the Flip-Flop logical operator in Java
+        Implementation of the Flip-Flop operator in Java
     </description>
     <inceptionYear>2023</inceptionYear>
 
@@ -38,21 +42,6 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.assertj</groupId>
-            <artifactId>assertj-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-params</artifactId>
-        </dependency>
-    </dependencies>
 
     <build>
         <pluginManagement>
