@@ -3,8 +3,8 @@ package com.epam.engx.flipflop;
 import java.util.function.Predicate;
 
 
-final class FlipFlopImpl<T> extends AbstractFlipFlop<T> {
-   FlipFlopImpl(Predicate<? super T> lhs, Predicate<? super T> rhs) {
+final class FlipFlop<T> extends AbstractFlipFlop<T> {
+   FlipFlop(Predicate<? super T> lhs, Predicate<? super T> rhs) {
       super(lhs, rhs);
    }
 

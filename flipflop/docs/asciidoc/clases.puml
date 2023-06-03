@@ -1,0 +1,25 @@
+@startuml
+circle Predicate<T>
+
+interface FlipFlopPredicate<T> {
+    + {abstract} boolean state()
+'    + {static}  FlipFlopPredicate flipFlop(Predicate, Predicate)
+'    + {static}  FlipFlopPredicate lazyFlipFlop(Predicate, Predicate)
+}
+abstract class AbstractFlipFlop<T> {
+    ~Predicate lhs
+    ~Predicate rhs
+    ~boolean state
+    +boolean state()
+}
+class FlipFlop<T> {
+    +test(T)
+}
+class LazyFlipFlop<T> {
+    +test(T)
+}
+Predicate -- FlipFlopPredicate
+FlipFlopPredicate <|.. AbstractFlipFlop
+AbstractFlipFlop <|-- FlipFlop
+AbstractFlipFlop <|-- LazyFlipFlop
+@enduml
