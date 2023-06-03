@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
 
 import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 import static com.epam.engx.flipflop.FlipFlopPredicate.flipFlop;
 import static com.epam.engx.flipflop.FlipFlopPredicate.lazyFlipFlop;
@@ -45,7 +46,8 @@ class FlipFlopPredicateTest {
    void flip_flop_turns_on_and_off_on_the_same_element() {
       var numbers = rangeClosed(10, 16).boxed();
 
-      var actual = numbers.filter(flipFlop(isBuzz, isEven));
+      var actual = numbers
+            .filter(flipFlop(isBuzz, isEven));
 
       assertThat(actual)
             .as("the flip-flop can turn off immediately after turning on")
@@ -91,10 +93,10 @@ class FlipFlopPredicateTest {
             }
             """;
 
-      var javadocPredicate = FlipFlopPredicate.<String>flipFlop(
-            line -> line.contains("/**"),
-            line -> line.contains("*/")
-      );
+      Predicate<String> javadocOpen = line -> line.contains("/**");
+      Predicate<String> javadocClose = line -> line.contains("*/");
+
+      var javadocPredicate = flipFlop(javadocOpen, javadocClose);
 
       var javadocs = sourceCode.lines()
             .filter(javadocPredicate);
@@ -119,9 +121,50 @@ class FlipFlopPredicateTest {
             .containsExactly(14, 15, 16);
    }
 
+   private Stream<String> passingCars() {
+      return Stream.of(
+            "VC-087", "BN-756", "LM-408",
+            "POL-01", "SQ-782", "AA-001", "TQ-644", "POL-02",
+            "BC-034", "JQ-877", "KL-554", "WR-079");
+   }
+
+   @Test
+   void use_flip_flop_to_filter_cortege_cars() {
+      Predicate<String> policeOne = "POL-01"::equals;
+      Predicate<String> policeTwo = "POL-02"::equals;
+
+      var cortege = passingCars()
+            .filter(flipFlop(policeOne, policeTwo));
+
+      assertThat(cortege)
+            .as("the cortege consists of five cars")
+            .containsExactly("POL-01", "SQ-782", "AA-001", "TQ-644", "POL-02");
+   }
+
+   @Test
+   void use_lazy_flip_flop_to_filter_cortege_cars() {
+      Predicate<String> policeOne = "POL-01"::equals;
+      Predicate<String> policeTwo = "POL-02"::equals;
+      var policeCar = policeOne.or(policeTwo);
+
+      var incorrectResult = passingCars()
+            .filter(flipFlop(policeCar, policeCar));
+
+      assertThat(incorrectResult)
+            .as("the ordinal flip-flop works incorrectly")
+            .containsExactly("POL-01", "POL-02");
+
+      var cortege = passingCars()
+            .filter(lazyFlipFlop(policeCar, policeCar));
+
+      assertThat(cortege)
+            .as("the cortege consists of five cars")
+            .containsExactly("POL-01", "SQ-782", "AA-001", "TQ-644", "POL-02");
+   }
+
    @Test
    void test1() {
-      var underTest = new FlipFlopImpl<Integer>(x -> x == 2, x -> x == 5);
+      var underTest = new FlipFlop<Integer>(x -> x == 2, x -> x == 5);
 
       then(underTest.state())
             .isFalse();
