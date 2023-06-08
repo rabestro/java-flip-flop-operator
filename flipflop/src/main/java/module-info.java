@@ -5,5 +5,5 @@
  * @author Jegors Čemisovs
  */
 module flipflop {
-   exports com.epam.engx.flipflop;
+   exports com.epam.flipflop;
 }

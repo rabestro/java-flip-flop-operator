@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-import static com.epam.engx.flipflop.FlipFlopPredicate.flipFlop;
+import static com.epam.flipflop.FlipFlopPredicate.flipFlop;
 
 
 @SuppressWarnings({ "java:S106", "java:S2096" })

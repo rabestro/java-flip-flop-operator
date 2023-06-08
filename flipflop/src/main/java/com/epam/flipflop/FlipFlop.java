@@ -1,4 +1,4 @@
-package com.epam.engx.flipflop;
+package com.epam.flipflop;
 
 import java.util.function.Predicate;
 
@@ -9,7 +9,7 @@ final class FlipFlop<T> extends AbstractFlipFlop<T> {
    }
 
    @Override
-   public boolean test(T value) {
+   public boolean test(final T value) {
       var result = state || lhs.test(value);
       state = result && !rhs.test(value);
       return result;

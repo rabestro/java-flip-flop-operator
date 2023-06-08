@@ -1,4 +1,4 @@
-package com.epam.engx.flipflop;
+package com.epam.flipflop;
 
 import java.util.function.Predicate;
 
@@ -10,7 +10,7 @@ final class LazyFlipFlop<T> extends AbstractFlipFlop<T> {
    }
 
    @Override
-   public boolean test(T value) {
+   public boolean test(final T value) {
       if (state) {
          state = !rhs.test(value);
          return true;

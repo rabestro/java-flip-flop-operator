@@ -1,4 +1,4 @@
-package com.epam.engx.flipflop;
+package com.epam.flipflop;
 
 import java.util.function.Predicate;
 
@@ -11,10 +11,5 @@ abstract class AbstractFlipFlop<T> implements FlipFlopPredicate<T> {
    AbstractFlipFlop(Predicate<? super T> lhs, Predicate<? super T> rhs) {
       this.lhs = lhs;
       this.rhs = rhs;
-   }
-
-   @Override
-   public boolean state() {
-      return state;
    }
 }
