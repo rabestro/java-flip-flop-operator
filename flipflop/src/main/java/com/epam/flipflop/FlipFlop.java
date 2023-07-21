@@ -3,9 +3,14 @@ package com.epam.flipflop;
 import java.util.function.Predicate;
 
 
-final class FlipFlop<T> extends AbstractFlipFlop<T> {
-   FlipFlop(Predicate<? super T> lhs, Predicate<? super T> rhs) {
-      super(lhs, rhs);
+public final class FlipFlop<T> implements Predicate<T> {
+   private final Predicate<? super T> lhs;
+   private final Predicate<? super T> rhs;
+   private boolean state;
+
+   public FlipFlop(Predicate<? super T> lhs, Predicate<? super T> rhs) {
+      this.lhs = lhs;
+      this.rhs = rhs;
    }
 
    @Override
