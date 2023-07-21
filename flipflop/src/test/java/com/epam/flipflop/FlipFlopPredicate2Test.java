@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
-class FlipFlopPredicateTest {
+class FlipFlopPredicate2Test {
    private static final Predicate<Integer> isEven = x -> (x & 1) == 0;
    private static final Predicate<Integer> isBuzz = x -> x % 7 == 0 || x % 10 == 7;
 
@@ -65,9 +65,9 @@ class FlipFlopPredicateTest {
    }
 
    @Test
-   void extract_all_javadoc_comments() {
+   void extract_all_javadoc_by_flip_flop_predicate() {
       // sample test data
-      var sourceCode = """
+      var sampleSourceCode = """
             package sample;
             /**
              * Multiline javadoc
@@ -88,7 +88,7 @@ class FlipFlopPredicateTest {
       Predicate<String> javaDocClose = line -> line.endsWith("*/");
 
       // when
-      var javaDocsLines = sourceCode
+      var javaDocsLines = sampleSourceCode
             .lines()
             .filter(flipFlop(javaDocOpen, javaDocClose));
 
