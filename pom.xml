@@ -21,7 +21,7 @@
     <properties>
         <java.version>17</java.version>
         <junit.version>5.9.3</junit.version>
-        <assertj.version>3.24.2</assertj.version>
+        <assertj.version>3.27.7</assertj.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
